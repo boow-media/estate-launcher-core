@@ -18,27 +18,29 @@ class Estate_Launcher_Updater {
 	public function check_for_updates($transient) {
 		if (empty($transient->checked)) return $transient;
 
-		$request = wp_remote_get("https://api.github.com/repos/{$this->github_user}/{$this->github_repo}/releases/latest", [
+		$response = wp_remote_get("https://api.github.com/repos/{$this->github_user}/{$this->github_repo}/releases/latest", [
 			'headers' => ['User-Agent' => 'WordPress']
 		]);
 
-		if (is_wp_error($request)) return $transient;
+		if (is_wp_error($response)) return $transient;
 
-		$release = json_decode(wp_remote_retrieve_body($request));
-		if (!empty($release->tag_name)) {
-			$current_version = get_plugin_data($this->plugin_file)['Version'];
-			$latest_version = ltrim($release->tag_name, 'v');
+		$release = json_decode(wp_remote_retrieve_body($response));
+		if (empty($release->tag_name)) return $transient;
 
-			if (version_compare($current_version, $latest_version, '<')) {
-				$zip_url = "https://github.com/{$this->github_user}/{$this->github_repo}/releases/download/{$release->tag_name}/{$this->github_zip_name}";
+		include_once ABSPATH . 'wp-admin/includes/plugin.php';
+		$plugin_data = get_plugin_data($this->plugin_file);
+		$current_version = $plugin_data['Version'];
+		$latest_version = ltrim($release->tag_name, 'v');
 
-				$transient->response[$this->plugin_slug] = (object) [
-					'slug'        => 'estate-launcher-core',
-					'new_version' => $latest_version,
-					'package'     => $zip_url,
-					'url'         => $release->html_url
-				];
-			}
+		if (version_compare($current_version, $latest_version, '<')) {
+			$zip_url = "https://github.com/{$this->github_user}/{$this->github_repo}/releases/download/{$release->tag_name}/{$this->github_zip_name}";
+
+			$transient->response[$this->plugin_slug] = (object) [
+				'slug'        => 'estate-launcher-core',
+				'new_version' => $latest_version,
+				'package'     => $zip_url,
+				'url'         => $release->html_url
+			];
 		}
 
 		return $transient;
@@ -47,13 +49,14 @@ class Estate_Launcher_Updater {
 	public function plugin_info($false, $action, $args) {
 		if ($action !== 'plugin_information' || $args->slug !== 'estate-launcher-core') return $false;
 
-		$request = wp_remote_get("https://api.github.com/repos/{$this->github_user}/{$this->github_repo}/releases/latest", [
+		$response = wp_remote_get("https://api.github.com/repos/{$this->github_user}/{$this->github_repo}/releases/latest", [
 			'headers' => ['User-Agent' => 'WordPress']
 		]);
 
-		if (is_wp_error($request)) return $false;
+		if (is_wp_error($response)) return $false;
 
-		$release = json_decode(wp_remote_retrieve_body($request));
+		$release = json_decode(wp_remote_retrieve_body($response));
+		if (empty($release->tag_name)) return $false;
 
 		return (object) [
 			'name'          => 'Estate Launcher Core',

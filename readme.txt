@@ -1,28 +1,52 @@
 === Estate Launcher Core ===
-Contributors: boow-media
-Tags: realitní, nemovitosti, recenze, meta box, custom post type
-Requires at least: 5.8
+Contributors: boowmedia
+Tags: realitní kancelář, nemovitosti, recenze, CPT, WordPress, makléř
+Requires at least: 5.6
 Tested up to: 6.5
-Stable tag: 1.1.0
+Requires PHP: 7.4
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
+Modulární základ pro realitní weby na WordPressu – správa nemovitostí, recenzí a kontaktních údajů makléře.
+
 == Description ==
-Modulární plugin pro správu nemovitostí a recenzí, optimalizovaný pro realitní weby postavené na Meta Box a Breakdance Builderu.  
-Zahrnuje vlastní typy obsahu, vlastní pole a integraci se systémem hodnocení.  
-Součástí je také automaticky generované ID webu pro interní identifikaci a ochranu proti kopírování.
+
+**Estate Launcher Core** je základní modul pro realitní weby, který poskytuje:
+
+- vlastní typy příspěvků pro nemovitosti a recenze,
+- snadno přístupnou stránku s ID webu a možností kopírování,
+- možnost deaktivace jednotlivých modulů,
+- samostatnou sekci pro správu údajů o makléři (jméno, telefon, email),
+- čistý a přehledný design v administraci.
+
+Plugin je plně připravený pro rozšíření pomocí dalších modulů nebo napojení na importní můstky.
 
 == Installation ==
-1. Nahrajte plugin do složky `/wp-content/plugins/`.
-2. Aktivujte ho v administraci WordPressu.
-3. Postupujte dle nastavení na stránce pluginu („Estate Launcher“ v levém menu).
+
+1. Nahrajte složku `estate-launcher-core` do `/wp-content/plugins/`.
+2. Aktivujte plugin v menu **Pluginy**.
+3. V administraci se objeví položka **Estate Launcher**, kde můžete upravit nastavení.
+
+== Frequently Asked Questions ==
+
+= K čemu slouží ID webu? =  
+Každá instalace generuje unikátní ID, které může sloužit k identifikaci webu např. při napojení na externí systém.
+
+= Jak dynamicky zobrazím údaje makléře v šabloně? =  
+Pomocí vlastních polí (např. `el_agent_phone`, `el_agent_email`) můžete hodnoty vložit přes builder jako dynamická data.
 
 == Changelog ==
-= 1.1.0 =
-* Přidáno: Readonly pole pro kopírování ID webu v nastavení pluginu.
-* Změna: Soubory přejmenovány z českých názvů na anglické (např. `cpt-nemovitosti.php` → `cpt-properties.php`).
-* Vylepšení: ID webu se nyní trvale uchovává i po odinstalaci pluginu (pro účely identifikace a ochrany).
-* Úklid: Vylepšený administrační přehled bez funkčních změn.
 
-= 1.0.0 =
-* První veřejná verze pluginu.
+= 1.3.0 =
+* Přidání nastavení údajů o makléři v administraci
+* Shortcody pro snadné vkládání údajů (např. [agent_phone])
+* Vylepšený vizuál zpráv a kopírování ID
+
+= 1.2.0 =
+* Přidána samostatná sekce pro údaje o makléři (jméno, email, telefon).
+* Vylepšený vzhled nastavení a oprava funkce tlačítka „Kopírovat“.
+* Interní úpravy kódu a příprava na modulární rozšíření.
+
+= 1.1.1 =
+* První ostrá verze s podporou CPT, metaboxů, sloupců a nastavení.
