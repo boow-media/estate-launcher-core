@@ -1,0 +1,34 @@
+/* ===== Štítek Stav nabídky ===== */
+.el-badge {
+	display: inline-block;
+	padding: 3px 8px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #fff;
+	border-radius: 4px;
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
+/* Barvy podle stavu */
+.el-aktivni {
+	background-color: #2e7d32; /* zelená */
+}
+
+.el-rezervace {
+	background-color: #f9a825; /* žlutá/oranžová */
+}
+
+.el-prodano {
+	background-color: #c62828; /* červená */
+}
+
+.el-default {
+	background-color: #999; /* šedá – neutrální badge */
+}
+
+/* ===== Zarovnání sloupce Stav nabídky na střed v adminu ===== */
+th.column-stav_nabidky,
+td.column-stav_nabidky {
+	text-align: center !important;
+}

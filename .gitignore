@@ -1,0 +1,16 @@
+# Systémové soubory
+.DS_Store
+Thumbs.db
+
+# IDE / editor složky
+.vscode/
+.idea/
+
+# Composer / NPM
+vendor/
+node_modules/
+.env
+
+# Build artefakty
+*.zip
+*.log
