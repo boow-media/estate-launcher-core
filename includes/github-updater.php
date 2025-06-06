@@ -18,18 +18,16 @@ class Estate_Launcher_Updater {
 	public function check_for_updates($transient) {
 		if (empty($transient->checked)) return $transient;
 
-		$response = wp_remote_get("https://api.github.com/repos/{$this->github_user}/{$this->github_repo}/releases/latest", [
+		$request = wp_remote_get("https://api.github.com/repos/{$this->github_user}/{$this->github_repo}/releases/latest", [
 			'headers' => ['User-Agent' => 'WordPress']
 		]);
 
-		if (is_wp_error($response)) return $transient;
+		if (is_wp_error($request)) return $transient;
 
-		$release = json_decode(wp_remote_retrieve_body($response));
+		$release = json_decode(wp_remote_retrieve_body($request));
 		if (empty($release->tag_name)) return $transient;
 
-		include_once ABSPATH . 'wp-admin/includes/plugin.php';
-		$plugin_data = get_plugin_data($this->plugin_file);
-		$current_version = $plugin_data['Version'];
+		$current_version = get_plugin_data($this->plugin_file)['Version'];
 		$latest_version = ltrim($release->tag_name, 'v');
 
 		if (version_compare($current_version, $latest_version, '<')) {
@@ -49,13 +47,13 @@ class Estate_Launcher_Updater {
 	public function plugin_info($false, $action, $args) {
 		if ($action !== 'plugin_information' || $args->slug !== 'estate-launcher-core') return $false;
 
-		$response = wp_remote_get("https://api.github.com/repos/{$this->github_user}/{$this->github_repo}/releases/latest", [
+		$request = wp_remote_get("https://api.github.com/repos/{$this->github_user}/{$this->github_repo}/releases/latest", [
 			'headers' => ['User-Agent' => 'WordPress']
 		]);
 
-		if (is_wp_error($response)) return $false;
+		if (is_wp_error($request)) return $false;
 
-		$release = json_decode(wp_remote_retrieve_body($response));
+		$release = json_decode(wp_remote_retrieve_body($request));
 		if (empty($release->tag_name)) return $false;
 
 		return (object) [
@@ -65,7 +63,8 @@ class Estate_Launcher_Updater {
 			'author'        => 'Boow Media',
 			'download_link' => "https://github.com/{$this->github_user}/{$this->github_repo}/releases/download/{$release->tag_name}/{$this->github_zip_name}",
 			'sections'      => [
-				'description' => 'Základní plugin pro správu nemovitostí a recenzí. Obsahuje vlastní post typy, pole a nástroje pro makléřské weby.'
+				'description' => 'Základní plugin pro správu nemovitostí a recenzí. Obsahuje vlastní post typy, pole a nástroje pro makléřské weby.',
+				'changelog'   => "== Verze {$release->tag_name} ==\n\n* Přidání údajů makléře\n* Shortcody\n* Vylepšené UI"
 			]
 		];
 	}
@@ -76,10 +75,10 @@ class Estate_Launcher_Updater {
 	}
 }
 
-// ✅ Spuštění updateru
-new Estate_Launcher_Updater(__FILE__);
+// ✅ Spuštění updateru (důležité: hlavní soubor, ne __FILE__ z includes/)
+new Estate_Launcher_Updater(plugin_dir_path(__DIR__) . 'estate-launcher-core.php');
 
-// ✅ Reset při aktivaci pluginu
+// ✅ Reset při aktivaci
 register_activation_hook(__FILE__, function () {
 	delete_site_transient('update_plugins');
 	wp_update_plugins();

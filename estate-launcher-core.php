@@ -3,7 +3,7 @@
  * Plugin Name:       Estate Launcher Core
  * Plugin URI:        https://github.com/boowmedia/estate-launcher-core
  * Description:       Modulární systém pro realitní weby, který zajišťuje správu nemovitostí i recenzí a tvoří stabilní základ pro další rozvoj a automatizaci.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Author:            Boow Media
  * Author URI:        https://www.boow.cz/
  * License:           GPL v2 or later
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Definice konstant
-define( 'EL_CORE_VERSION', '1.3.0' );
+define( 'EL_CORE_VERSION', '1.3.1' );
 define( 'EL_CORE_PLUGIN_FILE', __FILE__ );
 define( 'EL_CORE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EL_CORE_URL', plugin_dir_url( __FILE__ ) );

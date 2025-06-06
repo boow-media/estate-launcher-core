@@ -4,7 +4,7 @@ Tags: realitní kancelář, nemovitosti, recenze, CPT, WordPress, makléř
 Requires at least: 5.6
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,6 +37,11 @@ Každá instalace generuje unikátní ID, které může sloužit k identifikaci 
 Pomocí vlastních polí (např. `el_agent_phone`, `el_agent_email`) můžete hodnoty vložit přes builder jako dynamická data.
 
 == Changelog ==
+
+= 1.3.1 =
+* Oprava funkčnosti automatických aktualizací přes GitHub
+* Úprava updateru podle ověřeného funkčního vzoru z pluginu Makléř+
+* Příprava na budoucí přidání changelog výpisu ve správci pluginů
 
 = 1.3.0 =
 * Přidání nastavení údajů o makléři v administraci
