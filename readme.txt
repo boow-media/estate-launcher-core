@@ -4,7 +4,7 @@ Tags: realitní kancelář, nemovitosti, recenze, CPT, WordPress, makléř
 Requires at least: 5.6
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,10 @@ Pomocí vlastních polí (např. `el_agent_phone`, `el_agent_email`) můžete ho
 
 == Changelog ==
 
+= 1.3.2 =
+* Přidáno nové pole pro nahrání listu vlastnictví k nemovitosti
+* Upraveny a zpřesněny hodnoty v poli „Druh vlastnictví“
+
 = 1.3.1 =
 * Oprava funkčnosti automatických aktualizací přes GitHub
 * Úprava updateru podle ověřeného funkčního vzoru z pluginu Makléř+
@@ -49,9 +53,9 @@ Pomocí vlastních polí (např. `el_agent_phone`, `el_agent_email`) můžete ho
 * Vylepšený vizuál zpráv a kopírování ID
 
 = 1.2.0 =
-* Přidána samostatná sekce pro údaje o makléři (jméno, email, telefon).
-* Vylepšený vzhled nastavení a oprava funkce tlačítka „Kopírovat“.
-* Interní úpravy kódu a příprava na modulární rozšíření.
+* Přidána samostatná sekce pro údaje o makléři (jméno, email, telefon)
+* Vylepšený vzhled nastavení a oprava funkce tlačítka „Kopírovat“
+* Interní úpravy kódu a příprava na modulární rozšíření
 
 = 1.1.1 =
-* První ostrá verze s podporou CPT, metaboxů, sloupců a nastavení.
+* První ostrá verze s podporou CPT, metaboxů, sloupců a nastavení

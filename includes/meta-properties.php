@@ -42,10 +42,11 @@ function el_meta_nemovitosti( $meta_boxes ) {
 			[ 'name' => 'Adresa', 'id' => 'adresa', 'type' => 'text' ],
 			[ 'name' => 'Dispozice', 'id' => 'dispozice', 'type' => 'text' ],
 			[ 'name' => 'Druh vlastnictví', 'id' => 'vlastnictvi', 'type' => 'select', 'options' => [
-				'Osobní vlastnictví' => 'Osobní vlastnictví',
-				'Družstevní vlastnictví' => 'Družstevní vlastnictví',
-				'Podílové vlastnictví nemovitosti' => 'Podílové vlastnictví nemovitosti',
+				'Osobní' => 'Osobní',
+				'Družstevní' => 'Družstevní',
 				'Společné jmění manželů' => 'Společné jmění manželů',
+				'Podílové' => 'Podílové',
+				'Veřejné' => 'Veřejné',
 			]],
 		],
 	];
@@ -113,6 +114,7 @@ function el_meta_nemovitosti( $meta_boxes ) {
 			[ 'name' => 'Virtuální prohlídka (URL)', 'id' => 'virtualni_prohlidka', 'type' => 'url' ],
 			[ 'name' => 'Půdorys', 'id' => 'pudorys', 'type' => 'image_advanced' ],
 			[ 'name' => 'Galerie obrázků', 'id' => 'galerie', 'type' => 'image_advanced' ],
+			[ 'name' => 'List vlastnictví (obrázek)', 'id' => 'list_vlastnictvi', 'type' => 'image_advanced', 'max_file_uploads' => 1 ],
 		],
 	];
 
